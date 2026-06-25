@@ -1,0 +1,49 @@
+<div class="header">
+    <div class="text">Árnyas Apartman</div>
+    <div class="contacts"><a href="#contactID">{{ text[currentLanguage].contacts }}</a></div>
+    <div class="gallery"><a href="#galleryID">{{ text[currentLanguage].gallery }}</a></div>
+    <div class="lang-buttons">
+      <button type="button" (click)="setLanguage('hu')" [class.active]="currentLanguage === 'hu'">HU</button>
+      <button type="button" (click)="setLanguage('en')" [class.active]="currentLanguage === 'en'">EN</button>
+      <button type="button" (click)="setLanguage('de')" [class.active]="currentLanguage === 'de'">DE</button>
+    </div>
+</div>
+<div [ngStyle]="{'background-image': 'url('+pictures[index]+')'}" class="background"></div>
+<div class="scrolled-background">
+    <section id="galleryID" class="gallery-section">
+      <h2>{{ text[currentLanguage].galleryHeading }}</h2>
+      <div class="gallery-grid">
+        <button *ngFor="let pic of pictures" class="thumbnail-button" (click)="selectPicture(pic)" type="button">
+          <img [src]="pic" [alt]="'Galéria kép: ' + pic" loading="lazy" />
+        </button>
+      </div>
+    </section>
+</div>
+
+<div class="preview-overlay" *ngIf="selectedPicture">
+  <div class="preview-card">
+    <button class="close-button" type="button" (click)="closePreview()" aria-label="Bezárás">×</button>
+    <img [src]="selectedPicture" [alt]="'Kiválasztott kép: ' + selectedPicture" />
+  </div>
+</div>
+<div class="footer">
+    <div class="footer-container">
+        <div class="left-side-footer">
+            <div class="logo"></div>
+            <h1 class="title">{{ text[currentLanguage].addressTitle }}</h1>
+            <p class="title-value">8220 Balatonalmádi Árnyas u.14</p>
+            <h1 id="contactID" class="contact">{{ text[currentLanguage].contactTitle }}</h1>
+            <p class="email">{{'anbala67@gmail.com'}}</p>
+            <p class="telefon">+36303950500</p>
+    
+        </div>
+        <div class="reight-side-footer">
+            <div class="map">
+                <div class="iframe-container">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.505734397164!2d18.000481132509783!3d47.00636899210011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476995d3379e56ef%3A0x3a9cd2fbd601c78e!2sBalatonalm%C3%A1di%2C%20%C3%81rnyas%20u.%2014%2C%208220!5e0!3m2!1shu!2shu!4v1737104823736!5m2!1shu!2shu" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="white-line"></div>
+</div>
